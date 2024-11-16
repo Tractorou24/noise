@@ -10,10 +10,12 @@ target_sources(noise
         FILES
             include/noise/noise.h
             include/noise/perlin.h
+            include/noise/voronoi.h
         BASE_DIRS
             include
     PRIVATE
         src/perlin.cpp
+        src/voronoi.cpp
 )
 
 target_link_libraries(noise 

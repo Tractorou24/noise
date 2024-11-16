@@ -4,6 +4,7 @@ Small implementation of some noise generators in C++, with a small abstraction l
 
 The current supported noise types are:
 - Perlin Noise
+- Voronoi Noise
 
 ## Overview
 Perlin noise is a type of gradient noise commonly used in procedural content generation, such as for creating textures, terrain, and other natural-looking phenomena in computer graphics.

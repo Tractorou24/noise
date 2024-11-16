@@ -1,5 +1,6 @@
 #include "noise/noise.h"
 #include "noise/perlin.h"
+#include "noise/voronoi.h"
 
 #include "cxxopts.hpp"
 #include "libassert/assert.hpp"
@@ -60,7 +61,7 @@ int main(int argc, char* argv[])
         seed = args["seed"].as<std::uint32_t>();
 
     // Create the noise
-    constexpr std::array<std::string_view, 1> available_noise_types = {"perlin"};
+    constexpr std::array<std::string_view, 2> available_noise_types = {"perlin", "voronoi"};
 
     ASSERT_REQUIRED_OPTION_PRESENT("type", "No noise type specified.")
     const auto type = args["type"].as<std::string>();
@@ -69,6 +70,8 @@ int main(int argc, char* argv[])
     std::unique_ptr<noise::noise> noise = nullptr;
     if (type == "perlin")
         noise = std::make_unique<noise::perlin::perlin>(seed);
+    else if (type == "voronoi")
+        noise = std::make_unique<noise::voronoi::voronoi>(seed);
     ASSERT(noise != nullptr, "Failed to create noise generator.", type);
 
     // Generate the noise
@@ -80,7 +83,7 @@ int main(int argc, char* argv[])
     const std::uint64_t grid_size = args["grid"].as<std::uint64_t>();
     const std::uint32_t passes = args["passes"].as<std::uint32_t>();
 
-    std::println("Generating perlin noise with width: {} and height: {}", width, height);
+    std::println("Generating noise with width: {} and height: {}", width, height);
     std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
     noise->generate(width, height, passes, grid_size);
     std::chrono::high_resolution_clock::time_point end = std::chrono::high_resolution_clock::now();
@@ -93,7 +96,7 @@ int main(int argc, char* argv[])
 
     try
     {
-        std::println("Saving perlin noise to file: {}", output_path);
+        std::println("Saving noise to file: {}", output_path);
         start = std::chrono::high_resolution_clock::now();
         noise->save(output_path);
         end = std::chrono::high_resolution_clock::now();
