@@ -5,6 +5,10 @@
         "cxxopts",
         "libassert",
         "glm",
-        "pngpp"
+        "pngpp",
+        {
+            "name": "litefx",
+            "features": [ "vulkan", "dx12", "glm" ]
+        }
     ]
 }

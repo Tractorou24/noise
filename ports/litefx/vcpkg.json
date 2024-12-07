@@ -1,0 +1,52 @@
+{
+    "name": "litefx",
+    "version-string": "0.3.1",
+    "port-version": 0,
+    "maintainers": [
+        "Carsten Rudolph <18394207+crud89@users.noreply.github.com>"
+    ],
+    "description": "An extensible, descriptive, modern computer graphics and rendering engine.",
+    "homepage": "https://litefx.crudolph.io/",
+    "documentation": "https://litefx.crudolph.io/docs/",
+    "license": "MIT",
+    "supports": "windows & !arm",
+    "features": {
+        "dx12": {
+            "description": "Builds the DirectX 12 backend.",
+            "dependencies": [ "directx-headers", "d3d12-memory-allocator", "directx-agility-sdk", "directx-dxc" ]
+        },
+        "pix-support": {
+            "description": "Adds support for PIX runtime in the DirectX 12 backend.",
+            "dependencies": [ "winpixeventruntime" ]
+        },
+        "vulkan": {
+            "description": "Builds the Vulkan backend.",
+            "dependencies": [ "vulkan", "vulkan-memory-allocator", "spirv-reflect" ]
+        },
+        "glm": {
+            "description": "Builds glm converters for math types.",
+            "dependencies": [ "glm" ]
+        },
+        "dx-math": {
+            "description": "Builds DirectX Math converters for math types.",
+            "dependencies": [ "directxmath" ]
+        }
+    },
+    "default-features": [
+        "dx12",
+        "vulkan"
+    ],
+    "dependencies": [
+        "spdlog",
+        "fmt",
+        "directx-dxc",
+        {
+            "name": "vcpkg-cmake",
+            "host": true
+        },
+        {
+            "name": "vcpkg-cmake-config",
+            "host": true
+        }
+    ]
+}
