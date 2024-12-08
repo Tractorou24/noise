@@ -48,3 +48,4 @@ set_directory_properties(PROPERTIES DIR_IN_ALL ON)
 # Define the targets
 add_subdirectory(noise)
 add_subdirectory(cli)
+add_subdirectory(terrain)

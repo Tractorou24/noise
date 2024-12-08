@@ -6,6 +6,8 @@
         "libassert",
         "glm",
         "pngpp",
+        "spdlog",
+        "glfw3",
         {
             "name": "litefx",
             "features": [ "vulkan", "dx12", "glm" ]
